@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Timestamp converter</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <h1>Timesptamp converter</h1>
+    <div id="help">Enter a timestamp, <i>like those from java.lang.System.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/System.html#currentTimeMillis()">currentTimeMillis()</a></i>, and convert it into a natural date format for a human being</div>
+    <div id="dialog">
+        <div>
+            <input type="text" id="txf" value="1357296386882">
+            <input id="convertBtn" type="button" value="convert">
+            <div id="result" style="clear:both;" />            
+        </div>
+    </div>
+    <!-- 
+         ========================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- configure Dojo -->
+    <script>
+    // Instead of using data-dojo-config, we're creating a dojoConfig
+    // object *before* we load dojo.js; they're functionally identical,
+    // it's just easier to read this approach with a larger configuration.
+    var dojoConfig = {
+        async: true,
+        // This code registers the correct location of the "app"
+        // package so we can load Dojo from the CDN whilst still
+        // being able to load local modules
+        packages: [{
+            name: "app",
+            location: location.pathname.replace(/\/[^/]*$/, '') + '/js'
+        }]
+    };
+    </script>
+    <!-- load Dojo -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"></script>
+
+    <script>
+    require([
+        'app/MyModule'
+    ], function(myModule) {
+        myModule.connect('convertBtn', 'txf', 'result');
+    });
+    </script>
+
+</body>
+
+</html>
